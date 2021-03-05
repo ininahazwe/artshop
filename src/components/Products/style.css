@@ -1,0 +1,9 @@
+#products {
+    padding: 20px 150px;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
