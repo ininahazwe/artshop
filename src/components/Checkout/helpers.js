@@ -1,6 +1,7 @@
 import CheckoutForm from "./CheckoutForm";
 import BookingDetails from "./BookingDetails";
 import Payment from "./Payment";
+import Confirmation from "./Confirmation";
 
 
 export const renderRelatedComponent = ({
@@ -48,6 +49,8 @@ export const renderRelatedComponent = ({
               handleCheckout={handleCheckout}
           />
       );
+    case "confirmation":
+      return <Confirmation orderInfo={orderInfo} orderError={orderError} />;
     default:
       return null;
   }

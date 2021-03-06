@@ -7,3 +7,6 @@
 .product-wrapper{
   background-color: white;
 }
+.product-container{
+  gap: 30px;
+}
