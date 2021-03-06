@@ -9,9 +9,9 @@ const Products = ({ products, addProduct }) => {
   return (
     <div>
       <Container id="products">
-        <Grid container spacing={4} className="wrapper">
+        <Grid container spacing={4} justify="center">
           {products.map((product) => (
-            <Grid key={product.id} item xs={12} sm={6} md={4}>
+            <Grid key={product.id} item xs={12} sm={6} md={2} className="product-wrapper">
               <Product product={product} addProduct={addProduct} />
             </Grid>
           ))}

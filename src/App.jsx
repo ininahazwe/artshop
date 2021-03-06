@@ -8,6 +8,7 @@ import Products from "./components/Products";
 import Basket from "./components/Basket";
 import Checkout from "./components/Checkout";
 import ProductView from "./components/ProductView";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -52,10 +53,10 @@ const App = () => {
 
   const handleCheckout = async (checkoutId, orderData) => {
     try {
-      const incomingOrder = await commerce.checkout.capture(
-         checkoutId,
-         orderData
-       );
+      // const incomingOrder = await commerce.checkout.capture(
+      //   checkoutId,
+      //   orderData
+      // );
 
       setOrderInfo(orderData);
 
@@ -74,44 +75,48 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div>
-        <CssBaseline />
-        <NavBar
-          basketItems={basketData.total_items}
-          totalCost={
-            (basketData.subtotal &&
-              basketData.subtotal.formatted_with_symbol) ||
-            "00.00"
-          }
-        />
-        <Switch>
-          <Route exact path="/">
-            <Products products={products} addProduct={addProduct} />
-          </Route>
-          <Route exact path="/basket">
-            <Basket
-              basketData={basketData}
-              updateProduct={updateProduct}
-              handleEmptyBasket={handleEmptyBasket}
-              RemoveItemFromBasket={RemoveItemFromBasket}
+      <AnimatePresence exitBeforeEnter>
+        <Router>
+          <div>
+          <CssBaseline />
+            <NavBar
+              basketItems={basketData.total_items}
+              totalCost={
+                (basketData.subtotal &&
+                  basketData.subtotal.formatted_with_symbol) ||
+                "00.00"
+              }
             />
-          </Route>
-          <Route exact path="/checkout">
-            <Checkout
-              orderInfo={orderInfo}
-              orderError={orderError}
-              basketData={basketData}
-              handleCheckout={handleCheckout}
-            />
-          </Route>
-          <Route exact path="/product-view/:id">
-            <ProductView addProduct={addProduct} />
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+            <Switch>
+              <Route exact path="/">
+                <Products products={products} addProduct={addProduct} />
+              </Route>
+              <Route exact path="/basket">
+                <Basket
+                  basketData={basketData}
+                  updateProduct={updateProduct}
+                  handleEmptyBasket={handleEmptyBasket}
+                  RemoveItemFromBasket={RemoveItemFromBasket}
+                />
+              </Route>
+              <Route exact path="/checkout">
+                <Checkout
+                  orderInfo={orderInfo}
+                  orderError={orderError}
+                  basketData={basketData}
+                  handleCheckout={handleCheckout}
+                />
+              </Route>
+              <Route exact path="/product-view/:id">
+                <ProductView
+                  addProduct={addProduct}
+                />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </AnimatePresence>
   );
 };
 

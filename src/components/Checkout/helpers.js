@@ -1,7 +1,7 @@
 import CheckoutForm from "./CheckoutForm";
 import BookingDetails from "./BookingDetails";
-import Confirmation from "./Confirmation";
 import Payment from "./Payment";
+
 
 export const renderRelatedComponent = ({
   user,
@@ -21,8 +21,8 @@ export const renderRelatedComponent = ({
       return (
         <CheckoutForm
           user={user}
-          orderInfo={orderInfo}
-          checkoutData={checkoutData}
+          //orderInfo={orderInfo}
+          //checkoutData={checkoutData}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           handleSelectChange={handleSelectChange}
@@ -40,16 +40,14 @@ export const renderRelatedComponent = ({
       );
     case "order-payment":
       return (
-        <Payment
-          user={user}
-          checkoutData={checkoutData}
-          handleBackStep={handleBackStep}
-          handleNextStep={handleNextStep}
-          handleCheckout={handleCheckout}
-        />
+          <Payment
+              user={user}
+              checkoutData={checkoutData}
+              handleBackStep={handleBackStep}
+              handleNextStep={handleNextStep}
+              handleCheckout={handleCheckout}
+          />
       );
-    case "confirmation":
-      return <Confirmation orderInfo={orderInfo} orderError={orderError} />;
     default:
       return null;
   }
